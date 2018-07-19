@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoling.manage.mapper.TbBookinfoMapper">
+  <resultMap id="BaseResultMap" type="com.zhaoling.manage.entity.TbBookinfo">
+    <id column="ISBN" jdbcType="VARCHAR" property="isbn" />
+    <result column="BOOKNAME" jdbcType="VARCHAR" property="bookname" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="PUBLISHER" jdbcType="VARCHAR" property="publisher" />
+    <result column="WRITER" jdbcType="VARCHAR" property="writer" />
+    <result column="INTRODUCE" jdbcType="VARCHAR" property="introduce" />
+    <result column="PRICE" jdbcType="DECIMAL" property="price" />
+    <result column="PDATE" jdbcType="VARCHAR" property="pdate" />
+    <result column="COVER" jdbcType="VARCHAR" property="cover" />
+    <result column="INTIME" jdbcType="VARCHAR" property="intime" />
+    <result column="NEWBOOK" jdbcType="DECIMAL" property="newbook" />
+    <result column="COMMEND" jdbcType="DECIMAL" property="commend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ISBN, BOOKNAME, TYPE, PUBLISHER, WRITER, INTRODUCE, PRICE, PDATE, COVER, INTIME, 
+    NEWBOOK, COMMEND
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BOOKINFO
+    where ISBN = #{isbn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BOOKINFO
+    where ISBN = #{isbn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhaoling.manage.entity.TbBookinfo">
+    insert into TB_BOOKINFO (ISBN, BOOKNAME, TYPE, 
+      PUBLISHER, WRITER, INTRODUCE, 
+      PRICE, PDATE, COVER, 
+      INTIME, NEWBOOK, COMMEND
+      )
+    values (#{isbn,jdbcType=VARCHAR}, #{bookname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{publisher,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{pdate,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{intime,jdbcType=VARCHAR}, #{newbook,jdbcType=DECIMAL}, #{commend,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhaoling.manage.entity.TbBookinfo">
+    insert into TB_BOOKINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="isbn != null">
+        ISBN,
+      </if>
+      <if test="bookname != null">
+        BOOKNAME,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="publisher != null">
+        PUBLISHER,
+      </if>
+      <if test="writer != null">
+        WRITER,
+      </if>
+      <if test="introduce != null">
+        INTRODUCE,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="pdate != null">
+        PDATE,
+      </if>
+      <if test="cover != null">
+        COVER,
+      </if>
+      <if test="intime != null">
+        INTIME,
+      </if>
+      <if test="newbook != null">
+        NEWBOOK,
+      </if>
+      <if test="commend != null">
+        COMMEND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="isbn != null">
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="bookname != null">
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="writer != null">
+        #{writer,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pdate != null">
+        #{pdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="newbook != null">
+        #{newbook,jdbcType=DECIMAL},
+      </if>
+      <if test="commend != null">
+        #{commend,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaoling.manage.entity.TbBookinfo">
+    update TB_BOOKINFO
+    <set>
+      <if test="bookname != null">
+        BOOKNAME = #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        PUBLISHER = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="writer != null">
+        WRITER = #{writer,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pdate != null">
+        PDATE = #{pdate,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        COVER = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        INTIME = #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="newbook != null">
+        NEWBOOK = #{newbook,jdbcType=DECIMAL},
+      </if>
+      <if test="commend != null">
+        COMMEND = #{commend,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ISBN = #{isbn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhaoling.manage.entity.TbBookinfo">
+    update TB_BOOKINFO
+    set BOOKNAME = #{bookname,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      PUBLISHER = #{publisher,jdbcType=VARCHAR},
+      WRITER = #{writer,jdbcType=VARCHAR},
+      INTRODUCE = #{introduce,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      PDATE = #{pdate,jdbcType=VARCHAR},
+      COVER = #{cover,jdbcType=VARCHAR},
+      INTIME = #{intime,jdbcType=VARCHAR},
+      NEWBOOK = #{newbook,jdbcType=DECIMAL},
+      COMMEND = #{commend,jdbcType=DECIMAL}
+    where ISBN = #{isbn,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

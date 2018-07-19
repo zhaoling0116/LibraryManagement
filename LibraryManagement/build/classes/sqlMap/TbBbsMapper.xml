@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoling.manage.mapper.TbBbsMapper">
+  <resultMap id="BaseResultMap" type="com.zhaoling.manage.entity.TbBbs">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="INTIME" jdbcType="TIMESTAMP" property="intime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CONTENT, INTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BBS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BBS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhaoling.manage.entity.TbBbs">
+    insert into TB_BBS (ID, CONTENT, INTIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{intime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhaoling.manage.entity.TbBbs">
+    insert into TB_BBS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="intime != null">
+        INTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        #{intime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaoling.manage.entity.TbBbs">
+    update TB_BBS
+    <set>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null">
+        INTIME = #{intime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhaoling.manage.entity.TbBbs">
+    update TB_BBS
+    set CONTENT = #{content,jdbcType=VARCHAR},
+      INTIME = #{intime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

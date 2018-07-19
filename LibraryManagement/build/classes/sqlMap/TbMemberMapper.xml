@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoling.manage.mapper.TbMemberMapper">
+  <resultMap id="BaseResultMap" type="com.zhaoling.manage.entity.TbMember">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="TRUENAME" jdbcType="VARCHAR" property="truename" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+    <result column="CARDNO" jdbcType="VARCHAR" property="cardno" />
+    <result column="CARDTYPE" jdbcType="VARCHAR" property="cardtype" />
+    <result column="GRADE" jdbcType="DECIMAL" property="grade" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="FREEZE" jdbcType="DECIMAL" property="freeze" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERNAME, TRUENAME, PASSWORD, CITY, ADDRESS, POSTCODE, CARDNO, CARDTYPE, GRADE, 
+    AMOUNT, TEL, EMAIL, FREEZE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_MEMBER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_MEMBER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhaoling.manage.entity.TbMember">
+    insert into TB_MEMBER (ID, USERNAME, TRUENAME, 
+      PASSWORD, CITY, ADDRESS, 
+      POSTCODE, CARDNO, CARDTYPE, 
+      GRADE, AMOUNT, TEL, 
+      EMAIL, FREEZE)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postcode,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{cardtype,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, #{tel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{freeze,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhaoling.manage.entity.TbMember">
+    insert into TB_MEMBER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="truename != null">
+        TRUENAME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="postcode != null">
+        POSTCODE,
+      </if>
+      <if test="cardno != null">
+        CARDNO,
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE,
+      </if>
+      <if test="grade != null">
+        GRADE,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="freeze != null">
+        FREEZE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaoling.manage.entity.TbMember">
+    update TB_MEMBER
+    <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        TRUENAME = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        POSTCODE = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        CARDNO = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null">
+        CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        GRADE = #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="freeze != null">
+        FREEZE = #{freeze,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhaoling.manage.entity.TbMember">
+    update TB_MEMBER
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      TRUENAME = #{truename,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      POSTCODE = #{postcode,jdbcType=VARCHAR},
+      CARDNO = #{cardno,jdbcType=VARCHAR},
+      CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      GRADE = #{grade,jdbcType=DECIMAL},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      TEL = #{tel,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      FREEZE = #{freeze,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>
